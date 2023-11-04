@@ -1,1 +1,12 @@
+spring:
+  datasource:
+    name: kaoqin
+    url: jdbc:mysql://localhost:3306/kaoqin?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublickeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 077418
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.springkaoqin.bean
 
