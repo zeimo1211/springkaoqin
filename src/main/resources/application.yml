@@ -7,6 +7,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.springkaoqin.bean
+  configuration:
+    map-underscore-to-camel-case: true
 
+jpa:
+  show-sql: false
+  hibernate:
+    ddl-auto: none
