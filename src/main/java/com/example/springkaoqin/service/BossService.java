@@ -1,7 +1,7 @@
-//WorkerService service接口
 package com.example.springkaoqin.service;
 
+import com.example.springkaoqin.bean.BossInfo;
 
-public interface WorkerService {
+public interface BossService {
     boolean checkUserLogin(String username, String password);
 }

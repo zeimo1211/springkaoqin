@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请假管理系统</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .leave-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .leave-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .leave-item h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .leave-item p {
+            margin: 0;
+            color: #666;
+        }
+
+        .leave-item input {
+            margin-right: 10px;
+        }
+
+        .btn-success {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="datetime-local"],
+        textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #datetime-container {
+            position: absolute;
+            top: 10px; /* 距离顶部的距离 */
+            left: 10px; /* 距离右侧的距离 */
+            background-color: #ffffff; /* 背景颜色 */
+            padding: 10px;
+            border: 1px solid #ccc; /* 边框样式 */
+            border-radius: 5px; /* 边框圆角 */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+            display: inline-block; /* 使容器大小适应内容 */
+            text-align: center; /* 水平居中 */
+            line-height: 0px; /* 设置行高等于容器的高度，垂直居中 */
+            height: 30px; /* 设置容器的高度 */
+        }
+
+        .button-container_circle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+        }
+
+        .circle-button {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        label {
+            font-weight: bold;
+        }
+        .radio-group label {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="datetime-container">
+    <p id="datetime"></p>
+</div>
+
+<div class="button-container_circle">
+    <a href="worker_home.html">
+        <div class="circle-button">回到主页</div>
+    </a>
+    <a href="departmentinfo.html">
+        <div class="circle-button">部门信息</div>
+    </a>
+    <a href="workerinfo.html">
+        <div class="circle-button">个人信息</div>
+    </a>
+    <a href="index.html">
+        <div class="circle-button">退出登录</div>
+    </a>
+</div>
+<div class="leave-container">
+    <div class="leave-item" id="leave1">
+        <h3>出差信息 1</h3>
+        <p>开始时间: 2023-11-05 08:52:00</p>
+        <p>原因: 出差</p>
+        <label for="revoke1">回岗时间:</label>
+        <input type="datetime-local" id="revoke1" placeholder="yyyy-mm-dd">
+        <button class="btn-success" onclick="revokeLeave('leave1')">回岗</button>
+    </div>
+
+    <div class="leave-item" id="leave2">
+        <h3>出差信息 2</h3>
+        <p>开始时间: 2023-11-29 07:41:00</p>
+        <p>原因: 交流学习</p>
+        <label for="revoke2">回岗时间:</label>
+        <input type="datetime-local" id="revoke2" placeholder="yyyy-mm-dd">
+        <button class="btn-success" onclick="revokeLeave('leave2')">回岗</button>
+    </div>
+</div>
+
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <p>回岗成功！</p>
+        <button onclick="closeModal()">关闭</button>
+    </div>
+</div>
+
+<script>
+    function revokeLeave(leaveId) {
+        document.getElementById(leaveId).style.display = 'none';
+        openModal();
+    }
+
+    function openModal() {
+        document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+    }
+
+    function updateDateTime() {
+        const datetimeElement = document.getElementById("datetime");
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const formattedDate = now.toLocaleDateString('zh-CN', options);
+        datetimeElement.textContent = formattedDate;
+    }
+
+    // 初始加载时更新日期和时间
+    updateDateTime();
+
+    // 每秒更新一次日期和时间
+    setInterval(updateDateTime, 1000);
+</script>
+
+</body>
+
+</html>
