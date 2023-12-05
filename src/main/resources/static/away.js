@@ -74,22 +74,21 @@ function submitForm2() {
 
     var reason = document.getElementById("reason").value;
 
-    if (!startTime || !endTime || !reason ) {
+    if (!startTime || !endTime || !reason) {
         alert("请填写完整的申请信息");
     } else {
-        var data3 = JSON.stringify({
-            username: username,
-            type: "出差",
-            startTime: startTime,
-            endTime: endTime,
-            reason: reason
+        var data4 = JSON.stringify({
+            wno: username,
+            bistate: "回岗",
+            bitime: startTime,
+            bireason: reason
         });
         var xhr3 = new XMLHttpRequest();
-        xhr3.open("POST", 'http://localhost:8080/ServletMaven/away', true);
+        xhr3.open("POST", 'http://localhost:8080/away', true);
         xhr3.setRequestHeader("Content-Type", "application/json");
 
 
-        xhr3.onreadystatechange = function() {
+        xhr3.onreadystatechange = function () {
             if (xhr3.readyState == 4 && xhr3.status == 200) {
                 var response = JSON.parse(xhr3.responseText);
                 if (response.success) {
@@ -97,11 +96,12 @@ function submitForm2() {
                 } else {
                     alert("申请回岗失败");
                 }
-            }else {
+            } else {
                 console.error('申请回岗出错:', xhr3.status, xhr3.statusText);
             }
         };
-        xhr3.send(data3);
+        xhr3.send(data4);
         document.getElementById("leaveForm").reset();
     }
+
 }

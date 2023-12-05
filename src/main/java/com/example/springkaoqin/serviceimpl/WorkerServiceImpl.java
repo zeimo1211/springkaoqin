@@ -25,4 +25,8 @@ public class WorkerServiceImpl implements WorkerService {
             return false;
         }
     }
+    @Override
+    public Worker getWorkerInfo(String username) {
+        return workerMapper.selectWorkerByUsername(username);
+    }
 }

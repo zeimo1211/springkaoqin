@@ -4,6 +4,12 @@ package com.example.springkaoqin.bean;
 public class Worker {
     private String wno;
     private String keyword;
+    private String wname;
+    private String gender;
+    private String wphone;
+    private String wjob;
+    private String wstate;
+    private String waddress;
 
     public String getWno() {
         return wno;

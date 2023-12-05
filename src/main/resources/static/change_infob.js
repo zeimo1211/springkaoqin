@@ -24,7 +24,7 @@ function change_w() {
         alert("请填写完整的修改信息");
     } else {
         var xhr7 = new XMLHttpRequest();
-        xhr7.open("POST", 'http://localhost:8080/ServletMaven/changew', true);
+        xhr7.open("POST", 'http://localhost:8080/changew', true);
         xhr7.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr7.onreadystatechange = function () {

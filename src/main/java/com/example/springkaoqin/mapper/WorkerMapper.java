@@ -9,5 +9,7 @@ import org.apache.ibatis.annotations.Select;
 public interface WorkerMapper {
     @Select("SELECT * FROM worker WHERE wno = #{username} AND keyword = #{password}")
     Worker findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    @Select("SELECT * FROM worker WHERE wno = #{username}")
+    Worker selectWorkerByUsername(@Param("username") String username);
 
 }

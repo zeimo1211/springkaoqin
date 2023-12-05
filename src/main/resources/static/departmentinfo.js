@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 创建XMLHttpRequest对象
     var xhr6 = new XMLHttpRequest();
-    xhr6.open("POST", 'http://localhost:8080/ServletMaven/departmentinfo', true);
+    xhr6.open("POST", 'http://localhost:8080/departmentinfo', true);
 
     // 设置请求头以指定数据类型
     xhr6.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

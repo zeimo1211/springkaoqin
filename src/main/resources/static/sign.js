@@ -16,7 +16,7 @@ function signin() {
     var username = localStorage.getItem('username');
     var data1 = "username=" + username + "&type=" + "上班";
     var xhr1 = new XMLHttpRequest();
-    xhr1.open("POST", 'http://localhost:8080/ServletMaven/sign', true);
+    xhr1.open("POST", 'http://localhost:8080/sign', true);
     xhr1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr1.onreadystatechange = function() {
@@ -37,7 +37,7 @@ function signout() {
     var username = localStorage.getItem('username');
     var data2 = "username=" + username + "&type=" + "下班";
     var xhr2 = new XMLHttpRequest();
-    xhr2.open("POST", 'http://localhost:8080/ServletMaven/sign', true);
+    xhr2.open("POST", 'http://localhost:8080/sign', true);
     xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr2.onreadystatechange = function() {

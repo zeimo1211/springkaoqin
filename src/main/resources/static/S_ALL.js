@@ -21,7 +21,7 @@ function s_all() {
     } else {
         var data9 = "&startTime=" + startTime + "&endTime=" + endTime ;
         var xhr9 = new XMLHttpRequest();
-        xhr9.open("POST", 'http://localhost:8080/ServletMaven/sall', true);
+        xhr9.open("POST", 'http://localhost:8080/calculate-arrivals', true);
         xhr9.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr9.onreadystatechange = function() {

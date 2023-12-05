@@ -21,7 +21,7 @@ function s_add() {
     } else {
         var data9 = "&startTime=" + startTime + "&endTime=" + endTime ;
         var xhr9 = new XMLHttpRequest();
-        xhr9.open("POST", 'http://localhost:8080/ServletMaven/sadd', true);
+        xhr9.open("POST", 'http://localhost:8080/calculate-overtime', true);
         xhr9.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr9.onreadystatechange = function() {

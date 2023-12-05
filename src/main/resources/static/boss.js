@@ -30,7 +30,7 @@ function blogin() {
     const password = passwordInput.value;
     var data = "username=" + username + "&password=" + password;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://localhost:8080/ServletMaven/boss', true);
+    xhr.open("POST", 'http://localhost:8080/boss', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {

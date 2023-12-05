@@ -21,7 +21,7 @@ function s_b() {
     } else {
         var data9 = "&startTime=" + startTime + "&endTime=" + endTime ;
         var xhr9 = new XMLHttpRequest();
-        xhr9.open("POST", 'http://localhost:8080/ServletMaven/sb', true);
+        xhr9.open("POST", 'http://localhost:8080/get-leave-recordsb', true);
         xhr9.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr9.onreadystatechange = function() {

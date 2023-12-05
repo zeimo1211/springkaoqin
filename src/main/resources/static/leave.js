@@ -35,7 +35,7 @@ function submitForm1() {
     } else {
         var data4 = "username=" + username +"&type=" + "请假"+  "&startTime=" + startTime + "&endTime=" + endTime + "&reason=" + reason;
         var xhr4 = new XMLHttpRequest();
-        xhr4.open("POST", 'http://localhost:8080/ServletMaven/leave', true);
+        xhr4.open("POST", 'http://localhost:8080/leave', true);
         xhr4.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr4.onreadystatechange = function() {
@@ -78,7 +78,7 @@ function submitForm2() {
     } else {
         var data5 = "username=" + username +"&type=" + "销假"+  "&startTime=" + startTime + "&endTime=" + endTime + "&reason=" + reason;
         var xhr5 = new XMLHttpRequest();
-        xhr5.open("POST", 'http://localhost:8080/ServletMaven/leave', true);
+        xhr5.open("POST", 'http://localhost:8080/leave', true);
         xhr5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr5.onreadystatechange = function() {
